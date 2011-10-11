@@ -119,7 +119,7 @@ get "/auth/yahoo" do
   redirect url
 end
 
-get "/yahoo_sucess/?" do
+get "/yahoo_success/?" do
   session[:y] = params[:token]
   redirect '/' 
 end
