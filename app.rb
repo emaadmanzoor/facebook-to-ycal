@@ -39,6 +39,14 @@ helpers do
   def first_column(item, collection)
     return ' class="first-column"' if collection.index(item)%4 == 0
   end
+
+  def print_birthdays
+    birthday_list = ""
+    @user.friends(:name, :birthday).each do |friend|
+      birthday_list = birthday_list + friend.name + " --> " + friend.birthday + "\n" 
+    end
+    return birthday_list
+  end
 end
 
 # the facebook session expired! reset ours and restart the process

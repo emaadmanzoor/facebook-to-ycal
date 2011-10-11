@@ -154,8 +154,7 @@
       </ul>
     </section>
 		<div id="birthdays">
-      <%= @user.friends(:name, :birthday).each do |friend| %>
-            <p><%=puts friend.name%> --> <%= puts friend.birthday%></p>
-        <%= end %>
+      <%= print_birthdays %> 
+    </div> 
   </body>
 </html>
