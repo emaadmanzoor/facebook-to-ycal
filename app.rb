@@ -118,3 +118,8 @@ get "/auth/yahoo" do
   url = "https://api.login.yahoo.com/WSLogin/V1/wslogin?appid=" + appid + "&ts=" + time.to_s + "&sig=" + sig
   redirect url
 end
+
+get "/yahoo_sucess" do
+  session[:y] = params[:token]
+  redirect '/'
+end
