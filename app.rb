@@ -45,6 +45,7 @@ helpers do
     @user.friends(:birthday, :name, :id).each do |friend|
       friend_id = friend.id
       mogli_friend = Mogli::User.find(500361558,@client)
+      birthday_list = " Birthday: " + mogli_friend.birthday.to_s
       birthday_list = birthday_list + friend.name.to_s + " --> " + friend.birthday.to_s + " --> " + friend.id.to_s + "\n" 
     end
     return birthday_list
