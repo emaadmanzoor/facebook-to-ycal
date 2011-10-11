@@ -52,6 +52,8 @@ helpers do
       #end_date = birth_date + "T" + end_time
       birthday_list = birthday_list + friend.name.to_s + " --> " + friend.birthday.to_s
     end
+    @birthdays = @client.fql_query("SELECT name, birthday FROM user")
+    birthday_list = birthdays.to_s
     return birthday_list
   end
 end
