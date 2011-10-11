@@ -12,7 +12,7 @@ set :show_exceptions, false
 # permissions your app needs.
 # See https://developers.facebook.com/docs/reference/api/permissions/
 # for a full list of permissions
-FACEBOOK_SCOPE = 'publish_actions,user_likes,user_photos,user_photo_video_tags,friends_hometown,friends_birthday'
+FACEBOOK_SCOPE = 'publish_actions,user_likes,user_photos,user_photo_video_tags,friends_hometown,friends_birthday,user_birthday'
 
 unless ENV["FACEBOOK_APP_ID"] && ENV["FACEBOOK_SECRET"]
   abort("missing env vars: please set FACEBOOK_APP_ID and FACEBOOK_SECRET with your app credentials")
@@ -42,8 +42,10 @@ helpers do
 
   def print_birthdays
     birthday_list = ""
-    @user.friends(:birthdate, :name, :id).each do |friend|
-      friend_id = friend.id
+    @user.friends(:name, :id).each do |friend|
+      mogli_friend = Mogli::User.find("me", @client)
+      puts mogli_friend
+      puts mogli_friend.birthday
       birthday_list = birthday_list + friend.name.to_s + " --> " + friend.birthdate.to_s + " --> " + friend.id.to_s + "\n" 
     end
     return birthday_list
