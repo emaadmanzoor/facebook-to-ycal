@@ -1,5 +1,4 @@
 require "sinatra"
-require "mogli"
 
 enable :sessions
 set :raise_errors, false
