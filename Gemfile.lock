@@ -1,26 +1,26 @@
-PATH
-  remote: ./gems/
-  specs:
-    mogli (0.0.31)
-
 GEM
   remote: http://rubygems.org/
   specs:
     daemons (1.1.4)
     eventmachine (0.12.10)
+    hashie (1.1.0)
     httparty (0.8.1)
       multi_json
       multi_xml
     json (1.6.1)
+    mogli (0.0.34)
+      hashie (~> 1.1.0)
+      httparty (>= 0.4.3)
+      multi_json (~> 1.0.3)
     multi_json (1.0.3)
     multi_xml (0.4.1)
     rack (1.3.4)
     rack-protection (1.1.4)
       rack
     sinatra (1.3.1)
-      rack (~> 1.3, >= 1.3.4)
-      rack-protection (~> 1.1, >= 1.1.2)
-      tilt (~> 1.3, >= 1.3.3)
+      rack (>= 1.3.4, ~> 1.3)
+      rack-protection (>= 1.1.2, ~> 1.1)
+      tilt (>= 1.3.3, ~> 1.3)
     thin (1.2.11)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -33,6 +33,6 @@ PLATFORMS
 DEPENDENCIES
   httparty
   json
-  mogli (= 0.0.31)!
+  mogli
   sinatra
   thin
