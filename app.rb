@@ -43,13 +43,13 @@ helpers do
   def print_birthdays
     birthday_list = ""
     @user.friends(:birthday, :name).each do |friend|
-      mogli_friend = Mogli::User.find(friend.id,@client)
-      current_year = "2011" # KLUDGE!
-      start_time = "000000" # HHMMSS
-      end_time = "235959" # HHMMSS
-      birth_date = current_year + mogli_friend.birthday.split('/').join('')[0..3]
-      start_date = birth_date + "T" + start_time
-      end_date = birth_date + "T" + end_time
+      #mogli_friend = Mogli::User.find(friend.id,@client)
+      #current_year = "2011" # KLUDGE!
+      #start_time = "000000" # HHMMSS
+      #end_time = "235959" # HHMMSS
+      #birth_date = current_year + mogli_friend.birthday.split('/').join('')[0..3]
+      #start_date = birth_date + "T" + start_time
+      #end_date = birth_date + "T" + end_time
       birthday_list = birthday_list + friend.name.to_s
     end
     return birthday_list
