@@ -46,7 +46,7 @@ helpers do
       mogli_friend = Mogli::User.find("me", @client)
       birthday_list = birthday_list + friend.name.to_s + " --> " + friend.birthdate.to_s + " --> " + friend.id.to_s + "\n" 
     end
-    return "Me: " + mogli_friend.to_s + birthday_list
+    return birthday_list
   end
 
   def test
