@@ -46,7 +46,7 @@ helpers do
     @birthdays = @client.fql_query("select name,birthday_date from user where uid in (select uid2 from friend where uid1=me())")
     @birthdays.each do |friend|
       name = friend["name"].to_s
-      title = URI.escape(name + "'s Birthday")
+      title = URI.escape(name + ": Birthday")
       desc = URI.escape("Added by fb2ycal")
       birthday = "2011" + friend["birthday_date"].to_s.split('/').join('')[0..3]
       start_time = birthday + "T" + "000000"
