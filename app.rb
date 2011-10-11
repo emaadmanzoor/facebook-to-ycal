@@ -42,11 +42,13 @@ helpers do
 
   def print_birthdays
     birthday_list = ""
-    @user.friends(:birthday, :name, :id).each do |friend|
-      birthday_list = birthday_list + friend.name.to_s + " --> " + friend.birthday.to_s + " --> " + friend.id.to_s + "\n" 
+    @user.friends(:birthday_date, :name, :id).each do |friend|
+      birthday_list = birthday_list + friend.name.to_s + " --> " + friend.birthday_date.to_s + " --> " + friend.id.to_s + "\n" 
     end
     return birthday_list
   end
+
+  def test
 end
 
 # the facebook session expired! reset ours and restart the process
