@@ -1,6 +1,7 @@
 require "sinatra"
 require "mogli"
 require "uri"
+require "net/http"
 
 enable :sessions
 set :raise_errors, false
@@ -54,7 +55,8 @@ helpers do
       query = "http://qa.calendar.yahoo.com/ae?TITLE=" + title + "&DESC=" + desc + "&ST=" + start_time + "&ET=" + end_time + "&RPAT=01yr&REM1=12h&REM2=2h"
       @requests.push(query)
     end
-    return @requests.to_s
+    response = Net::HTTP.get_response(URI.parse(@requests[0]))
+    return response.to_s
   end
 end
 
@@ -100,3 +102,6 @@ get '/auth/facebook/callback' do
   session[:at] = client.access_token
   redirect '/'
 end
+
+post '/add/:id' do
+  
