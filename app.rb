@@ -47,7 +47,7 @@ helpers do
       birthday = "2011" + friend["birthday_date"].to_s.split('/').join('')[0..3]
       birthday_list = birthday_list + " Name: #{friend["name"]} " + " #{birthday} "
     end
-    return birthday_list
+    puts birthday_list
   end
 end
 
