@@ -52,7 +52,7 @@ helpers do
       #end_date = birth_date + "T" + end_time
       birthday_list = birthday_list + friend.name.to_s + " --> " + friend.birthday.to_s
     end
-    @birthdays = @client.fql_query("SELECT name, birthday FROM user")
+    @birthdays = @client.fql_query("select uid,name,birthday_date from user where uid in (select uid2 from friend where uid1=me())")
     birthday_list = birthdays.to_s
     return birthday_list
   end
