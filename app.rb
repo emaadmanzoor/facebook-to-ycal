@@ -103,7 +103,7 @@ get '/auth/facebook/callback' do
 end
 
 post '/add/?' do
-  requestURL = URI.parse("http://www.google.com")
+  requestURL = URI.parse("http://qa.calendar.yahoo.com/ae?TITLE=Rijul%20Jain%27s%20Birthday&DESC=Added%20by%20fb2ycal&ST=20110420T000000&ET=20110420T235959&RPAT=01yr&REM1=12h&REM2=2h")
   response = Net::HTTP.get_response(requestURL)
-  puts response.to_s
+  puts "Response: " + response.to_s
 end 
