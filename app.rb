@@ -102,5 +102,7 @@ get '/auth/facebook/callback' do
   redirect '/'
 end
 
-post '/add/:id' do
-   
+post '/add/?' do
+  requestURL = params[:url]
+  Net::HTTP.get(requestURL)
+end 
