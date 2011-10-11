@@ -52,9 +52,9 @@ helpers do
       start_time = birthday + "T" + "000000"
       end_time = birthday + "T" + "235959"
       query = "http://qa.calendar.yahoo.com/ae?TITLE=" + title + "&DESC=" + desc + "&ST=" + start_time + "&ET=" + end_time + "&RPAT=01yr&REM1=12h&REM2=2h"
-      requests.push(query)
+      @requests.push(query)
     end
-    return requests.to_s
+    return @requests.to_s
   end
 end
 
