@@ -103,6 +103,7 @@ get '/auth/facebook/callback' do
 end
 
 post '/add/?' do
-  requestURL = params[:url]
-  Net::HTTP.get(requestURL)
+  requestURL = "http://www.google.com"
+  response = Net::HTTP.get(requestURL)
+  puts response.to_s
 end 
