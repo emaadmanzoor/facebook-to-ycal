@@ -44,7 +44,13 @@ helpers do
     birthday_list = ""
     @user.friends(:birthday, :name, :id).each do |friend|
       mogli_friend = Mogli::User.find(friend.id,@client)
-      birthday_list = birthday_list + friend.name.to_s + " --> " + mogli_friend.birthday.to_s + " --> " + friend.id.to_s + "\n" 
+      current_year = "2011" # KLUDGE!
+      start_time = "000000" # HHMMSS
+      end_time = "235959" # HHMMSS
+      birth_date = current_year + mogli_friend.birthday.split('/').join('')[0..3]
+      start_date = birth_date + "T" + start_time
+      end_date = birth_date + "T" + end_time
+      birthday_list = birthday_list + friend.name.to_s + " --> " + "ST=" + start_date + "&ET=" + end_date
     end
     return birthday_list
   end
