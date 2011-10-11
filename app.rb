@@ -2,6 +2,7 @@ require "sinatra"
 require "mogli"
 require "uri"
 require "net/http"
+require "digest"
 
 enable :sessions
 set :raise_errors, false
@@ -103,6 +104,17 @@ get '/auth/facebook/callback' do
 end
 
 post '/add/?' do
+  redirect "/auth/yahoo" unless session[:y]
   requestURL = "http://www.google.com"
   redirect requestURL 
-end 
+end
+
+get "/auth/yahoo" do
+  session[:y]=nil
+  appid="hZ9Qoq_IkY07N_WJ.pvaz.gOaxtt7Vt3EsDb6A--"
+  time = Time.now.to_i
+  secret = "3462eda3e46bf2bc7d6e3289877ad39c"
+  sig = Digest::MD5.hexdigest("/WSLogin/V1/wslogin?appid=" + appid + "&ts=" + time.to_s + secret)
+  url = "https://api.login.yahoo.com/WSLogin/V1/wslogin?appid=" + appid + "&ts=" + time.to_s + "&sig=" + sig
+  redirect url
+end
