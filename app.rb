@@ -12,7 +12,7 @@ set :show_exceptions, false
 # permissions your app needs.
 # See https://developers.facebook.com/docs/reference/api/permissions/
 # for a full list of permissions
-FACEBOOK_SCOPE = 'publish_actions,user_likes,user_photos,user_photo_video_tags,friends_hometown,friends_birthday,user_birthday'
+FACEBOOK_SCOPE = 'user_likes,user_photos,user_photo_video_tags,friends_birthday'
 
 unless ENV["FACEBOOK_APP_ID"] && ENV["FACEBOOK_SECRET"]
   abort("missing env vars: please set FACEBOOK_APP_ID and FACEBOOK_SECRET with your app credentials")
@@ -42,13 +42,11 @@ helpers do
 
   def print_birthdays
     birthday_list = ""
-    @user.friends(:name, :id).each do |friend|
-      birthday_list = birthday_list + friend.name.to_s + " --> " + friend.id.to_s + "\n" 
+    @user.friends(:birthday, :name, :id).each do |friend|
+      birthday_list = birthday_list + friend.name.to_s + " --> " + friend.birthday.to_s + " --> " + friend.id.to_s + "\n" 
     end
     return birthday_list
   end
-
-  def test
 end
 
 # the facebook session expired! reset ours and restart the process
