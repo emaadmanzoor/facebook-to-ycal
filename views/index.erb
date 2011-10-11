@@ -27,6 +27,11 @@
           'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left
           );
       }
+			function getFriendIds() {
+			}
+			function getFriendBirthdays() {
+			}
+
     </script>
     <!--[if IE]>
       <script>
@@ -47,6 +52,7 @@
         </p>
         <div id="share-app">
           <p>Share your app:</p>
+					<p>Test: <%= @user.friends[0,1] %></p>
           <ul>
             <li>
               <a href="#" class="facebook-button" onclick="popup('<%= post_to_wall_url %>', 'Post to Wall', 580, 400);">
