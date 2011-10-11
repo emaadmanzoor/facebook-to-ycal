@@ -55,8 +55,7 @@ helpers do
       query = "http://qa.calendar.yahoo.com/ae?TITLE=" + title + "&DESC=" + desc + "&ST=" + start_time + "&ET=" + end_time + "&RPAT=01yr&REM1=12h&REM2=2h"
       @requests.push(query)
     end
-    response = Net::HTTP.get_response(URI.parse(@requests[0]))
-    return response.to_s
+    return @requests[0].to_s
   end
 end
 
@@ -101,4 +100,7 @@ get '/auth/facebook/callback' do
   client = Mogli::Client.create_from_code_and_authenticator(params[:code], authenticator)
   session[:at] = client.access_token
   redirect '/'
-end 
+end
+
+post '/add/:id' do
+   
