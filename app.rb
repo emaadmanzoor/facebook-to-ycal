@@ -42,18 +42,10 @@ helpers do
 
   def print_birthdays
     birthday_list = ""
-    @user.friends(:birthday, :name).each do |friend|
-      #mogli_friend = Mogli::User.find(friend.id,@client)
-      #current_year = "2011" # KLUDGE!
-      #start_time = "000000" # HHMMSS
-      #end_time = "235959" # HHMMSS
-      #birth_date = current_year + mogli_friend.birthday.split('/').join('')[0..3]
-      #start_date = birth_date + "T" + start_time
-      #end_date = birth_date + "T" + end_time
-      birthday_list = birthday_list + friend.name.to_s + " --> " + friend.birthday.to_s
+    @birthdays = @client.fql_query("select name,birthday_date from user where uid in (select uid2 from friend where uid1=me())")
+    @birthdays.each do |friend|
+      birthday_list = birthday_list + " Name: #{friend["name"]} " + " #{friend["birthday_date"]} "
     end
-    @birthdays = @client.fql_query("select uid,name,birthday_date from user where uid in (select uid2 from friend where uid1=me())")
-    birthday_list = @birthdays.to_s
     return birthday_list
   end
 end
