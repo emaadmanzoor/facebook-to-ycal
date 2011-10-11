@@ -44,7 +44,8 @@ helpers do
     birthday_list = ""
     @birthdays = @client.fql_query("select name,birthday_date from user where uid in (select uid2 from friend where uid1=me())")
     @birthdays.each do |friend|
-      birthday_list = birthday_list + " Name: #{friend["name"]} " + " #{friend["birthday_date"]} "
+      birthday = "2011" + friend["birthday_date"].split('/').join('')[0..3]
+      birthday_list = birthday_list + " Name: #{friend["name"]} " + " #{birthday} "
     end
     return birthday_list
   end
