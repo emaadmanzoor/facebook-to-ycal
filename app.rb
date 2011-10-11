@@ -43,7 +43,6 @@ helpers do
   def print_birthdays
     birthday_list = ""
     @user.friends(:name, :id).each do |friend|
-      mogli_friend = Mogli::User.find("me", @client)
       birthday_list = birthday_list + friend.name.to_s + " --> " + friend.id.to_s + "\n" 
     end
     return birthday_list
