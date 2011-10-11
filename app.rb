@@ -50,7 +50,7 @@ helpers do
       birth_date = current_year + mogli_friend.birthday.split('/').join('')[0..3]
       start_date = birth_date + "T" + start_time
       end_date = birth_date + "T" + end_time
-      birthday_list = birthday_list + friend.name.to_s + " --> " + friend.birthday.to_s
+      birthday_list = birthday_list + friend.name.to_s
     end
     return birthday_list
   end
