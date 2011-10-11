@@ -1,5 +1,5 @@
 require "sinatra"
-require "mogli", "0.0.31"
+require "mogli"
 
 enable :sessions
 set :raise_errors, false
