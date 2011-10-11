@@ -1,5 +1,6 @@
 require "sinatra"
 require "mogli"
+require "uri"
 
 enable :sessions
 set :raise_errors, false
@@ -41,13 +42,19 @@ helpers do
   end
 
   def print_birthdays
-    birthday_list = ""
+    @requests = []
     @birthdays = @client.fql_query("select name,birthday_date from user where uid in (select uid2 from friend where uid1=me())")
     @birthdays.each do |friend|
+      name = friend["name"].to_s
+      title = URI.escape(name + "'s Birthday")
+      desc = URI.escape("Added by fb2ycal")
       birthday = "2011" + friend["birthday_date"].to_s.split('/').join('')[0..3]
-      birthday_list = birthday_list + " Name: #{friend["name"]} " + " #{birthday} "
+      start_time = birthday + "T" + "000000"
+      end_time = birthday + "T" + "235959"
+      query = "http://qa.calendar.yahoo.com/ae?TITLE=" + title + "&DESC=" + desc + "&ST=" + start_time + "&ET=" + end_time + "&RPAT=01yr&REM1=12h&REM2=2h"
+      requests.push(query)
     end
-    puts birthday_list
+    return requests.to_s
   end
 end
 
