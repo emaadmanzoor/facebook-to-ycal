@@ -43,7 +43,7 @@ helpers do
   def print_birthdays
     birthday_list = ""
     @user.friends(:name, :birthday).each do |friend|
-      birthday_list = birthday_list + friend.name + " --> " + friend.birthday + "\n" 
+      birthday_list = birthday_list + friend.name.to_s + " --> " + friend.birthday.to_s + "\n" 
     end
     return birthday_list
   end
