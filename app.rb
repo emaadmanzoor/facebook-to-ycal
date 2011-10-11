@@ -53,7 +53,7 @@ helpers do
       birthday_list = birthday_list + friend.name.to_s + " --> " + friend.birthday.to_s
     end
     @birthdays = @client.fql_query("select uid,name,birthday_date from user where uid in (select uid2 from friend where uid1=me())")
-    birthday_list = birthdays.to_s
+    birthday_list = @birthdays.to_s
     return birthday_list
   end
 end
