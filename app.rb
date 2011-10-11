@@ -105,8 +105,7 @@ end
 
 post '/add/?' do
   redirect "/auth/yahoo" unless session[:y]
-  requestURL = "http://www.google.com"
-  redirect requestURL 
+  
 end
 
 get "/auth/yahoo" do
@@ -121,5 +120,10 @@ end
 
 get "/yahoo_success/?" do
   session[:y] = params[:token]
+  appid="hZ9Qoq_IkY07N_WJ.pvaz.gOaxtt7Vt3EsDb6A--"
+  time = Time.now.to_i
+  secret = "3462eda3e46bf2bc7d6e3289877ad39c"
+  sig = Digest::MD5.hexdigest("/WSLogin/V1/wspwtoken_login?appid=" + appid + "&token" + token + "&ts=" + time.to_s + secret)
+  url = "https://api.login.yahoo.com/WSLogin/V1/wspwtoken_login?appid=" + appid + "&token" + token + "&ts=" + time.to_s + "&sig=" + sig
   redirect '/' 
 end
