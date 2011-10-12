@@ -125,7 +125,7 @@ get "/yahoo_success/?" do
   secret = "3462eda3e46bf2bc7d6e3289877ad39c"
   sig = Digest::MD5.hexdigest("/WSLogin/V1/wspwtoken_login?appid=" + appid + "&token" + session[:y] + "&ts=" + time.to_s + secret)
   url = "https://api.login.yahoo.com/WSLogin/V1/wspwtoken_login?appid=" + appid + "&token" + session[:y] + "&ts=" + time.to_s + "&sig=" + sig
-  request = Net::HTTP::Get.new(URI.parse(url).path + "?" URI.parse(url).query)
+  request = Net::HTTP::Get.new(URI.parse(url).path + "?" + URI.parse(url).query)
   response = Net::HTTP.start(URI.parse(url).host, URI.parse(url).port) { |http|
     http.request(request)
   }
