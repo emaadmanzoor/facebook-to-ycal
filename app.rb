@@ -103,16 +103,14 @@ get '/auth/facebook/callback' do
   redirect '/'
 end
 
-post '/add/?' do
+post '/add' do
   #redirect "/auth/yahoo" unless session[:y]
   url = URI.parse("http://qa.calendar.yahoo.com/ae?TITLE=Rijul%20Jain%27s%20Birthday&DESC=Added%20by%20fb2ycal&ST=20110420T000000&ET=20110420T235959&RPAT=01yr&REM1=12h&REM2=2h")
   http = Net::HTTP.new(url.host, url.port)
   headers = {
     "Cookie" => "B=8aiiv4h79a9lt&b=4&d=2Qzmc7xpYF6sXdm3TW2wVkYhNfM-&s=4c&i=ooV.HzxluLfXFwEJhyDc; F=a=WNjVKaoMvTY0W41r1dZTRGrHSd1twT62pdy9Kurskn.U1XYSAs6UDnlqnipe0EdLvzhpxSM-&b=N8og; Y=v=1&n=2vdu8c2g31epv&l=4c003c0dpeeh/o&p=m2qvvin012000000&iz=&r=nf&lg=en-IN&intl=in&np=1; PH=fn=nXVoYla.TDJw7guUnmA-&l=en-IN&d=49e.gwlwlY9jwDlkbkyyHKT5oA--&s=6j; T=z=JbSlOBJv5pOBGqFTdfD4n.xTjMwBjZPNzYzMzc0NjJPNDZPTz&a=QAE&sk=DAAKus7xfXfvbm&ks=EAAfRhESIkzGDrvG981mraGZw--~E&d=c2wBT1RRM0FURTRNREUwTkRBek1UVTRNekU0T0RFdwFhAVFBRQFnAUNFVFczWk03RldMUVFYSUgyTUNPT0o1RjJVAXRpcAFMUEYua0EBenoBSmJTbE9CQTdF; BA=ba=3717&ip=203.83.248.36&t=1318402925; YC.ZP_emaadmanzoor=mvh_height=51&mvheight=463"
   }
-  http.get(url.path, headers) do |chunk|
-    chunk
-  end
+  http.get(url.path, headers)
 end
 
 get "/auth/yahoo" do
